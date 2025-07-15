@@ -16,8 +16,6 @@ interface TestState {
 
 const TOTAL_ITEMS = 68;
 const SINGLE_ITEMS = 60;
-const GROUP_ITEMS = 8;
-const PASSING_SCORE = 70;
 const COUNTDOWN_TIME = 5;
 
 const TestScreen: React.FC = () => {
@@ -38,13 +36,19 @@ const TestScreen: React.FC = () => {
   const countdownRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const startTest = () => {
+    console.log('Starting test...');
     const items = generateTestItems();
-    setTestState(prev => ({
-      ...prev,
-      stage: 'countdown',
-      testItems: items,
-      countdown: COUNTDOWN_TIME
-    }));
+    setTestState(prev => {
+      console.log('Setting countdown state...');
+      return {
+        ...prev,
+        stage: 'countdown',
+        testItems: items,
+        currentItem: 1,
+        answers: [],
+        countdown: COUNTDOWN_TIME
+      };
+    });
   };
 
   const stopTest = () => {
@@ -70,16 +74,23 @@ const TestScreen: React.FC = () => {
 
   // Add countdown effect
   useEffect(() => {
+    console.log('Current stage:', testState.stage);
+    console.log('Current countdown:', testState.countdown);
+    
     if (testState.stage === 'countdown') {
+      console.log('Starting countdown interval...');
       countdownRef.current = setInterval(() => {
         setTestState(prev => {
+          console.log('Countdown tick:', prev.countdown);
           if (prev.countdown <= 1) {
+            console.log('Countdown finished, starting test...');
             clearInterval(countdownRef.current!);
             return {
               ...prev,
               stage: 'testing',
               isTransmitting: true,
-              countdown: COUNTDOWN_TIME
+              countdown: COUNTDOWN_TIME,
+              currentItem: 1
             };
           }
           return {
@@ -91,6 +102,7 @@ const TestScreen: React.FC = () => {
 
       return () => {
         if (countdownRef.current) {
+          console.log('Cleaning up countdown interval...');
           clearInterval(countdownRef.current);
         }
       };
@@ -177,6 +189,7 @@ const TestScreen: React.FC = () => {
   }
 
   if (testState.stage === 'countdown') {
+    console.log('Rendering countdown screen...');
     return (
       <div className="test-screen countdown">
         <div className="countdown-display">
@@ -292,54 +305,8 @@ const TestScreen: React.FC = () => {
     );
   }
 
-  // Results stage
-  const { singleCharScore, groupScore } = calculateScore();
-  return (
-    <div className="test-screen results">
-      <h1 className="test-title">Test Stopped</h1>
-
-      <div className="test-section">
-        <h2 className="section-title">Test Summary</h2>
-        <div className="summary">
-          <p>Single Characters: {singleCharScore} × 1 = {singleCharScore} marks</p>
-          <p>Character Groups: {Math.floor(groupScore / 5)} × 5 = {groupScore} marks</p>
-          <p className="stopped-info">Test stopped after {testState.currentItem} of {TOTAL_ITEMS} items</p>
-          <p className="total-score">Total: {singleCharScore + groupScore}/{testState.currentItem}</p>
-        </div>
-      </div>
-
-      <div className="test-section">
-        <h2 className="section-title">Answer Key</h2>
-        <p className="answer-instruction">Compare with your notes for the {testState.currentItem} items you attempted</p>
-        <div className="answers-list">
-          {testState.answers.map((answer, index) => (
-            <div key={index} className="answer-item">
-              <div className="answer-number">#{index + 1}</div>
-              <div className="answer-type">
-                {index < SINGLE_ITEMS ? 'Single (1pt)' : 'Group (5pts)'}
-              </div>
-              <div className="morse-code">{answer}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="button-group">
-        <button className="new-test-button" onClick={() => setTestState(prev => ({ 
-          ...prev, 
-          stage: 'intro',
-          currentItem: 1,
-          answers: [],
-          testItems: []
-        }))}>
-          New Test
-        </button>
-        <button className="home-button" onClick={() => navigate('/')}>
-          Home
-        </button>
-      </div>
-    </div>
-  );
+  // Return null for any unknown state
+  return null;
 };
 
 export default TestScreen; 

@@ -252,34 +252,34 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: var(--background-color);
+  background-color: #1a1a1a;
 }
 
 .countdown-display {
   text-align: center;
   padding: 2rem;
   border-radius: 1rem;
-  background-color: var(--card-background-color);
+  background-color: #2a2a2a;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .countdown-display h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: var(--text-color);
+  color: white;
 }
 
 .countdown-number {
   font-size: 6rem;
   font-weight: bold;
   margin: 1rem 0;
-  color: var(--primary-color);
+  color: #ff6b6b;
   animation: pulse 1s infinite;
 }
 
 .countdown-display p {
   font-size: 1.5rem;
-  color: var(--text-color);
+  color: white;
   opacity: 0.8;
 }
 

@@ -7,6 +7,12 @@
   --divider-color: #3b82f6;
   --shadow-color: rgba(0, 0, 0, 0.1);
   
+  /* Theme variables for components */
+  --background-color: var(--bg-primary);
+  --text-color: var(--text-primary);
+  --border-color: var(--button-border);
+  --primary-color: var(--accent-blue);
+  
   /* Interactive elements */
   --button-bg: #ffffff;
   --button-bg-hover: #f1f5f9;
@@ -45,6 +51,12 @@
   --text-secondary: #a0aec0;
   --divider-color: #3b82f6;
   --shadow-color: rgba(0, 0, 0, 0.3);
+  
+  /* Theme variables for components */
+  --background-color: var(--bg-primary);
+  --text-color: var(--text-primary);
+  --border-color: var(--button-border);
+  --primary-color: var(--accent-blue);
   
   /* Interactive elements */
   --button-bg: #2d2d2d;
