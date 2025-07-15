@@ -66,12 +66,6 @@ const TestScreen: React.FC = () => {
     setTestState(prev => ({ ...prev, speed }));
   };
 
-  const calculateScore = () => {
-    const singleCharScore = testState.currentItem <= SINGLE_ITEMS ? testState.currentItem : SINGLE_ITEMS;
-    const groupScore = Math.max(0, Math.floor((testState.currentItem - SINGLE_ITEMS) / 5) * 5);
-    return { singleCharScore, groupScore };
-  };
-
   // Add countdown effect
   useEffect(() => {
     console.log('Current stage:', testState.stage);
@@ -107,7 +101,7 @@ const TestScreen: React.FC = () => {
         }
       };
     }
-  }, [testState.stage]);
+  }, [testState.stage, testState.countdown]);
 
   useEffect(() => {
     if (testState.stage === 'testing' && testState.isTransmitting) {
