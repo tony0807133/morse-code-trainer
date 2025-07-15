@@ -245,4 +245,52 @@
 .morse-code {
   font-family: monospace;
   color: white;
+}
+
+.test-screen.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+.countdown-display {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: var(--card-background-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-display h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.countdown-number {
+  font-size: 6rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  color: var(--primary-color);
+  animation: pulse 1s infinite;
+}
+
+.countdown-display p {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 } 

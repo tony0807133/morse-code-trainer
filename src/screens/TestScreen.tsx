@@ -4,17 +4,21 @@ import { generateTestItems, playMorseCode } from '../utils/morseCode';
 import '../styles/TestScreen.css';
 
 interface TestState {
-  stage: 'intro' | 'testing' | 'results';
+  stage: 'intro' | 'countdown' | 'testing' | 'results';
   currentItem: number;
   speed: number;
   isLightOn: boolean;
   answers: string[];
   isTransmitting: boolean;
   testItems: string[];
+  countdown: number;
 }
 
 const TOTAL_ITEMS = 68;
 const SINGLE_ITEMS = 60;
+const GROUP_ITEMS = 8;
+const PASSING_SCORE = 70;
+const COUNTDOWN_TIME = 5;
 
 const TestScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -25,21 +29,21 @@ const TestScreen: React.FC = () => {
     isLightOn: false,
     answers: [],
     isTransmitting: false,
-    testItems: []
+    testItems: [],
+    countdown: COUNTDOWN_TIME
   });
 
   const speedOptions = [0.5, 1, 1.2, 1.5, 2];
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const countdownRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const startTest = () => {
     const items = generateTestItems();
     setTestState(prev => ({
       ...prev,
-      stage: 'testing',
-      isTransmitting: true,
+      stage: 'countdown',
       testItems: items,
-      currentItem: 1,
-      answers: []
+      countdown: COUNTDOWN_TIME
     }));
   };
 
@@ -63,6 +67,35 @@ const TestScreen: React.FC = () => {
     const groupScore = Math.max(0, Math.floor((testState.currentItem - SINGLE_ITEMS) / 5) * 5);
     return { singleCharScore, groupScore };
   };
+
+  // Add countdown effect
+  useEffect(() => {
+    if (testState.stage === 'countdown') {
+      countdownRef.current = setInterval(() => {
+        setTestState(prev => {
+          if (prev.countdown <= 1) {
+            clearInterval(countdownRef.current!);
+            return {
+              ...prev,
+              stage: 'testing',
+              isTransmitting: true,
+              countdown: COUNTDOWN_TIME
+            };
+          }
+          return {
+            ...prev,
+            countdown: prev.countdown - 1
+          };
+        });
+      }, 1000);
+
+      return () => {
+        if (countdownRef.current) {
+          clearInterval(countdownRef.current);
+        }
+      };
+    }
+  }, [testState.stage]);
 
   useEffect(() => {
     if (testState.stage === 'testing' && testState.isTransmitting) {
@@ -139,6 +172,18 @@ const TestScreen: React.FC = () => {
         <button className="start-button" onClick={startTest}>
           Start Test
         </button>
+      </div>
+    );
+  }
+
+  if (testState.stage === 'countdown') {
+    return (
+      <div className="test-screen countdown">
+        <div className="countdown-display">
+          <h2>Test starting in</h2>
+          <div className="countdown-number">{testState.countdown}</div>
+          <p>Get ready!</p>
+        </div>
       </div>
     );
   }
