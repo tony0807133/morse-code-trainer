@@ -1,0 +1,98 @@
+:root {
+  /* Base colors */
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --text-primary: #1e3a8a;
+  --text-secondary: #64748b;
+  --divider-color: #3b82f6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* Interactive elements */
+  --button-bg: #ffffff;
+  --button-bg-hover: #f1f5f9;
+  --button-text: #1e3a8a;
+  --button-border: #e2e8f0;
+  --button-active-bg: #3b82f6;
+  --button-active-text: #ffffff;
+  
+  /* Accent colors */
+  --accent-blue: #4A90E2;
+  --accent-blue-hover: #2563eb;
+  --accent-blue-transparent: rgba(74, 144, 226, 0.2);
+  --accent-green: #43A047;
+  --accent-red: #E53935;
+  --accent-orange: #FF9800;
+  --accent-purple: #8b5cf6;
+  
+  /* Morse code colors */
+  --morse-dot-color: #4A90E2;
+  --morse-dash-color: #FF9800;
+  --morse-active-color: #ffffff;
+  
+  /* Indicators */
+  --indicator-active: #4CAF50;
+  --indicator-inactive: #ccc;
+  
+  /* Transitions */
+  --transition-speed: 0.3s;
+}
+
+[data-theme='dark'] {
+  /* Base colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #a0aec0;
+  --divider-color: #3b82f6;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  
+  /* Interactive elements */
+  --button-bg: #2d2d2d;
+  --button-bg-hover: #3d3d3d;
+  --button-text: #ffffff;
+  --button-border: #404040;
+  --button-active-bg: #3b82f6;
+  --button-active-text: #ffffff;
+  
+  /* Accent colors */
+  --accent-blue: #60A5FA;
+  --accent-blue-hover: #3B82F6;
+  --accent-blue-transparent: rgba(96, 165, 250, 0.2);
+  --accent-green: #43A047;
+  --accent-red: #E53935;
+  --accent-orange: #FFAB40;
+  --accent-purple: #A78BFA;
+  
+  /* Morse code colors - brighter in dark mode */
+  --morse-dot-color: #60A5FA;
+  --morse-dash-color: #FFAB40;
+  --morse-active-color: #ffffff;
+  
+  /* Indicators */
+  --indicator-active: #4CAF50;
+  --indicator-inactive: #666;
+}
+
+/* Global styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Common button styles */
+button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--button-border);
+  transition: all var(--transition-speed);
+}
+
+button:hover {
+  background-color: var(--button-bg-hover);
+}
+
+button.active {
+  background-color: var(--button-active-bg);
+  color: var(--button-active-text);
+} 
