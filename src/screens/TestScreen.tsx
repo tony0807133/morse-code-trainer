@@ -15,8 +15,6 @@ interface TestState {
 
 const TOTAL_ITEMS = 68;
 const SINGLE_ITEMS = 60;
-const GROUP_ITEMS = 8;
-const PASSING_SCORE = 70;
 
 const TestScreen: React.FC = () => {
   const navigate = useNavigate();
