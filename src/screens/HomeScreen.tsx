@@ -72,9 +72,6 @@ const HomeScreen: React.FC = () => {
             Start Learning Now
           </button>
         </div>
-        <div className="hero-image">
-          <div className="morse-animation">• − • −</div>
-        </div>
       </section>
 
       {/* Main Menu Section */}

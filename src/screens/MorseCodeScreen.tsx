@@ -145,6 +145,7 @@ const MorseCodeScreen: React.FC = () => {
         <div className="speed-control">
           <label>Speed:</label>
           <select value={speed} onChange={(e) => setSpeed(Number(e.target.value))}>
+            <option value={0.5}>0.5x</option>
             <option value={1}>1x</option>
             <option value={1.5}>1.5x</option>
             <option value={2}>2x</option>

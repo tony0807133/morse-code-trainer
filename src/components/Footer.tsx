@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
       <div className="footer-bottom">
         <p>&copy; {currentYear} Morse Code Trainer. All rights reserved.</p>
         <div className="footer-social">
-          <a href="https://github.com/tony0807133" target="_blank" rel="noopener noreferrer">GitHub</a>
+          
         </div>
       </div>
     </footer>
