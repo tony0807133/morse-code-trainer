@@ -3,27 +3,7 @@
   "name": "Morse Code Trainer",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "morse-code.png",
-      "type": "image/png",
-      "sizes": "16x16"
-    },
-    {
-      "src": "morse-code.png",
-      "type": "image/png",
-      "sizes": "32x32"
-    },
-    {
-      "src": "morse-code.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "morse-code.png",
+      "src": "https://morse-code-trainer.com/morse-code.png",
       "type": "image/png",
       "sizes": "512x512"
     }
