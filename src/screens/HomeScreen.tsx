@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import Footer from '../components/Footer';
 import '../styles/HomeScreen.css';
-import logo from '../assets/morse-code.png'; // Import the morse-code logo
 
 interface MenuOption {
   title: string;
@@ -61,7 +60,6 @@ const HomeScreen: React.FC = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <img src={logo} alt="Morse Code Trainer Logo" className="hero-logo" />
           <h1 className="hero-title">
             Master Morse Code
             <span className="hero-subtitle">Interactive & Fun</span>
